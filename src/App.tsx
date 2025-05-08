@@ -1,9 +1,14 @@
 /** @format */
 
-import './App.css';
+import { GlobalStyles } from './styles/GlobalStyles';
 
 function App() {
-  return <div>Hello World</div>;
+  return (
+    <>
+      <GlobalStyles />
+      <div>Hello World</div>
+    </>
+  );
 }
 
 export default App;
