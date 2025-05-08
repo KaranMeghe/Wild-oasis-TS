@@ -1,12 +1,9 @@
 /** @format */
 
-import { GlobalStyles } from './styles/GlobalStyles';
-
 function App() {
   return (
     <>
-      <GlobalStyles />
-      <div>Hello World</div>
+      <h1 className='text-red-500'>Hello World</h1>
     </>
   );
 }
