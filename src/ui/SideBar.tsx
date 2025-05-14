@@ -18,7 +18,7 @@ const SideBar = () => {
         </li>
 
         <li className='p-4 w-full text-center hover:bg-gray-200 hover:text-gray-800 transition-colors duration-200 rounded-md cursor-pointer'>
-          <Link to='/settings' className='flex gap-2 items-center'>
+          <Link to='/bookings' className='flex gap-2 items-center'>
             <HiOutlineCalendar />
             <span>Bookings</span>
           </Link>
