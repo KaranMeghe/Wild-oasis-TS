@@ -5,7 +5,7 @@ export interface Cabin {
   description: string;
   discount: number;
   id: number;
-  image: null | string;
+  image: undefined | string;
   maxCapacity: number;
   name: number;
   regularPrice: number;
