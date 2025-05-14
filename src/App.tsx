@@ -9,7 +9,7 @@ function App() {
     <Provider store={store}>
       <div className='flex'>
         <SideBar />
-        <div className='flex flex-col flex-1'>
+        <div className='flex flex-col flex-1 px-4 py-2'>
           <Header />
           <AppLayout />
         </div>
