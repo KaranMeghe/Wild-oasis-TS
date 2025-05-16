@@ -1,5 +1,6 @@
 /** @format */
 
+import toast from 'react-hot-toast';
 import { useDeleteCabinMutation } from '../Redux/api/cabinsApi';
 
 const useHandleCabin = () => {
@@ -10,10 +11,10 @@ const useHandleCabin = () => {
   const handleDeleteCabin = async (id: number) => {
     try {
       await deleteCabin(id).unwrap();
-      alert('Cabin delete successfully');
+      toast.success('Cabin deleted successfully');
     } catch (error) {
       console.error('Failed to delete cabin:', error);
-      alert('Failed to delete the cabin');
+      toast.error('Failed to delete the cabin');
     }
   };
 
