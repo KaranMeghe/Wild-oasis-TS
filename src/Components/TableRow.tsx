@@ -1,14 +1,13 @@
 /** @format */
 
-import type { Cabin } from '../Redux/models/cabins.model';
 import { formatCurrency } from '../utils/helpers';
-
-interface CabinProps {
-  cabin: Cabin;
-}
+import { AiOutlineDelete } from 'react-icons/ai';
+import type { CabinProps } from '../Redux/models/cabins.model';
+import useHandleCabin from '../Hooks/useHandleCabin';
 
 const TableRow = ({ cabin }: CabinProps) => {
-  const { name, maxCapacity, regularPrice, discount, description, image } = cabin;
+  const { id, name, maxCapacity, regularPrice, discount, image } = cabin;
+  const { isLoading, handleDeleteCabin } = useHandleCabin();
 
   return (
     <tr>
@@ -20,7 +19,12 @@ const TableRow = ({ cabin }: CabinProps) => {
       <td className='px-4 py-3 text-left border-b font-semibold'>{formatCurrency(regularPrice)}</td>
       <td className='px-4 py-3 text-left border-b text-green-500'>{formatCurrency(discount)}</td>
       <td className='px-4 py-3 text-left border-b'>
-        <button>Delete</button>
+        <button
+          onClick={() => handleDeleteCabin(id)}
+          className='p-1 bg-red-600 text-white rounded hover:bg-red-700'
+          disabled={isLoading}>
+          <AiOutlineDelete />
+        </button>
       </td>
     </tr>
   );

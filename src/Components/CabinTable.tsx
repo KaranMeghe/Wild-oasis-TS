@@ -7,7 +7,7 @@ const CabinTable = () => {
   const { isLoading, data: cabins, isError } = useFetchCabinsQuery();
   if (isLoading) return <p className='text-center'>Loading....</p>;
   if (isError) return <p className='text-center text-red-500'>Failed to Fetch Cabins Data...</p>;
-
+  console.log('Rendering cabins list:', cabins);
   return (
     <table className='min-w-full table-auto border border-gray-200 shadow-sm rounded-md overflow-hidden my-5'>
       <thead className='text-gray-700 text-sm font-semibold'>

@@ -10,3 +10,7 @@ export interface Cabin {
   name: number;
   regularPrice: number;
 }
+
+export interface CabinProps {
+  cabin: Cabin;
+}
