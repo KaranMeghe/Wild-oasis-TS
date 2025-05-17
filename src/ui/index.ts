@@ -2,5 +2,6 @@
 
 import Header from './Header';
 import SideBar from './SideBar';
+import Input from './Input';
 
-export { Header, SideBar };
+export { Header, SideBar, Input };

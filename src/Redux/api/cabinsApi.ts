@@ -31,6 +31,16 @@ export const cabinsApi = createApi({
       },
       invalidatesTags: ['Cabins'],
     }),
+
+    addCabin: builder.mutation<Cabin, Partial<Cabin>>({
+      async queryFn(newCabin) {
+        console.log('New Cabin', newCabin);
+        const { data, error } = await supabase.from('cabins').insert([newCabin]).select();
+        if (error) throw new Error('Cabin could not be created');
+        return { data: data[0] };
+      },
+      invalidatesTags: ['Cabins'],
+    }),
   }),
 });
-export const { useFetchCabinsQuery, useDeleteCabinMutation } = cabinsApi;
+export const { useFetchCabinsQuery, useDeleteCabinMutation, useAddCabinMutation } = cabinsApi;

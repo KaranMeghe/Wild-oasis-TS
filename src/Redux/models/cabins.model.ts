@@ -5,12 +5,23 @@ export interface Cabin {
   description: string;
   discount: number;
   id: number;
-  image: undefined | string;
+  image: null | string;
   maxCapacity: number;
-  name: number;
+  name: string;
   regularPrice: number;
 }
 
 export interface CabinProps {
   cabin: Cabin;
 }
+
+export interface CabinFormInputs {
+  name: string;
+  capacity: number;
+  price: number;
+  discount: number;
+  description: string;
+  cabinImg: string | null;
+}
+
+export type NewCabin = Omit<Cabin, 'id' | 'created_at'>;

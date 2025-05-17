@@ -1,6 +1,6 @@
 /** @format */
 
-import CabinTable from '../Components/CabinTable';
+import CabinTable from '../Components/cabin/CabinTable';
 import { useFetchCabinsQuery } from '../Redux/api/cabinsApi';
 
 function Cabins() {
