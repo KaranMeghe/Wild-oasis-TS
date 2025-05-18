@@ -105,15 +105,15 @@ const CabinForm = () => {
             <label htmlFor='cabinImg' className='text-sm font-medium text-gray-700'>
               Cabin Image (URL or upload)
             </label>
-            <Input
+            {/* Optional: Add a file input if you want to upload instead */}
+            <input
+              type='file'
+              accept='image/*'
               id='cabinImg'
-              {...register('cabinImg')}
-              type='text'
+              {...register('cabinImg', { required: true })}
               //   placeholder='https://example.com/image.jpg'
               className='border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
             />
-            {/* Optional: Add a file input if you want to upload instead */}
-            {/* <input type="file" accept="image/*" className="mt-2" /> */}
           </div>
         </div>
       </div>

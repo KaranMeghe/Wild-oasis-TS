@@ -21,7 +21,7 @@ export interface CabinFormInputs {
   price: number;
   discount: number;
   description: string;
-  cabinImg: string | null;
+  cabinImg?: FileList;
 }
 
 export type NewCabin = Omit<Cabin, 'id' | 'created_at'>;
