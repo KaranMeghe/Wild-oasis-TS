@@ -1,12 +1,18 @@
 /** @format */
 
-import { useForm } from 'react-hook-form';
+import { useForm, type FieldErrors } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useAddCabinMutation } from '../Redux/api/cabinsApi';
 import type { CabinFormInputs, NewCabin } from '../Redux/models/cabins.model';
 
 const useHandleCabinForm = () => {
-  const { register, handleSubmit, reset } = useForm<CabinFormInputs>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    getValues,
+    formState: { errors },
+  } = useForm<CabinFormInputs>();
   const [addCabin] = useAddCabinMutation();
 
   const onSubmit = async (data: CabinFormInputs) => {
@@ -29,7 +35,11 @@ const useHandleCabinForm = () => {
     }
   };
 
-  return { onSubmit, register, handleSubmit };
+  const onError = (errors: FieldErrors<CabinFormInputs>) => {
+    console.log(errors);
+  };
+
+  return { onSubmit, register, handleSubmit, onError, getValues, errors };
 };
 
 export default useHandleCabinForm;
