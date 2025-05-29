@@ -10,6 +10,7 @@ export const cabinsApi = createApi({
   tagTypes: ['Cabins'],
 
   endpoints: (builder) => ({
+    // Fetch Cabins
     fetchCabins: builder.query<Cabin[], void>({
       async queryFn() {
         const { data, error } = await supabase.from('cabins').select('*');
@@ -20,6 +21,7 @@ export const cabinsApi = createApi({
         result ? [...result.map(({ id }) => ({ type: 'Cabins' as const, id })), 'Cabins'] : ['Cabins'],
     }),
 
+    // Delete Cabins
     deleteCabin: builder.mutation<{ success: boolean }, number>({
       async queryFn(id) {
         console.log(id);
@@ -32,6 +34,7 @@ export const cabinsApi = createApi({
       invalidatesTags: ['Cabins'],
     }),
 
+    // Add Cabins
     addCabin: builder.mutation<Cabin, Partial<Cabin>>({
       async queryFn(newCabin) {
         console.log('New Cabin', newCabin);

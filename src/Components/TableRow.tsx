@@ -27,7 +27,7 @@ const TableRow = ({ cabin }: CabinProps) => {
         <td className='px-4 py-3 text-left border-b text-green-600 font-semibold'>{formatCurrency(discount)}</td>
         <td className='px-4 py-3 text-left border-b '>
           {/* Edit and CancelEdit Buttons (Toggle) */}
-          {!editCabinId ? (
+          {editCabinId !== id ? (
             <button
               onClick={() => handleEdit(id)}
               className={`p-2 mx-4 bg-green-600  hover:bg-green-700 text-white rounded transition`}
