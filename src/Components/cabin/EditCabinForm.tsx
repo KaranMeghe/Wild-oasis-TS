@@ -2,25 +2,20 @@
 
 import { Input } from '../../ui';
 import useHandleCabinForm from '../../Hooks/useHandleCabinForm';
-import { AiOutlineClose } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-import { setShowCabinForm } from '../../Redux/slices/cabinSlice';
+import { clearCabinId } from '../../Redux/slices/cabinSlice';
+import type { CabinProps } from '../../Redux/models/cabins.model';
 
-const CabinForm = () => {
+const EditCabinForm = ({ cabin }: CabinProps) => {
   const { register, handleSubmit, onSubmit, onError, getValues, errors } = useHandleCabinForm();
   const dispatch = useDispatch();
+  const { name, maxCapacity, regularPrice, discount, image, description } = cabin;
+
   return (
     <form
-      className='relative p-6 border rounded-md border-gray-300 w-[60%] mx-auto bg-white shadow-sm'
+      className='p-6 border rounded-md border-gray-300 w-[60%] mx-auto bg-white shadow-sm'
       onSubmit={handleSubmit(onSubmit, onError)}>
       <div className='flex flex-col gap-5'>
-        <div className='absolute  top-2 right-2'>
-          <button
-            className='text-white font-bold  bg-red-500 rounded-full p-1'
-            onClick={() => dispatch(setShowCabinForm())}>
-            <AiOutlineClose />
-          </button>
-        </div>
         <div className='flex-1 space-y-5'>
           {/* Cabin Name  */}
           <div className='flex flex-col space-y-1'>
@@ -30,6 +25,7 @@ const CabinForm = () => {
             <Input
               type='text'
               id='name'
+              defaultValue={name}
               {...register('name', {
                 required: 'This Field is Required',
                 minLength: {
@@ -50,6 +46,7 @@ const CabinForm = () => {
             <Input
               type='number'
               id='capacity'
+              defaultValue={maxCapacity}
               {...register('capacity', {
                 valueAsNumber: true,
                 required: 'This Field is Required',
@@ -68,6 +65,7 @@ const CabinForm = () => {
             <Input
               id='price'
               type='number'
+              defaultValue={regularPrice}
               {...register('price', {
                 valueAsNumber: true,
                 required: 'This Field is Required',
@@ -86,6 +84,7 @@ const CabinForm = () => {
             <Input
               type='number'
               id='discount'
+              defaultValue={discount}
               {...register('discount', {
                 valueAsNumber: true,
                 required: 'This Field is Required',
@@ -106,6 +105,7 @@ const CabinForm = () => {
             <textarea
               rows={4}
               id='description'
+              defaultValue={description}
               {...register('description', { required: 'This Field is Required' })}
               className='border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none'></textarea>
             {errors?.description?.message && <p className='text-red-500'>{errors?.description?.message}</p>}
@@ -125,21 +125,25 @@ const CabinForm = () => {
               //   placeholder='https://example.com/image.jpg'
               className='border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
             />
+            <img src={image} alt='Cabin preview' className='w-32 h-20 object-cover mt-2 rounded-md border' />
           </div>
         </div>
       </div>
 
       {/* Buttons */}
       <div className='pt-6 flex justify-end space-x-3'>
-        <button type='reset' className='px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition'>
+        <button
+          type='reset'
+          className='px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition'
+          onClick={() => dispatch(clearCabinId())}>
           Cancel
         </button>
         <button type='submit' className='px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition'>
-          Submit
+          Edit
         </button>
       </div>
     </form>
   );
 };
 
-export default CabinForm;
+export default EditCabinForm;

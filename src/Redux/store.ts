@@ -2,9 +2,11 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import { cabinsApi } from './api/cabinsApi';
+import { cabinReducers } from './slices/cabinSlice';
 
 const store = configureStore({
   reducer: {
+    cabin: cabinReducers,
     [cabinsApi.reducerPath]: cabinsApi.reducer,
   },
 

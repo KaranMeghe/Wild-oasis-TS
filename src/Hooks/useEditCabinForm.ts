@@ -6,7 +6,7 @@ import { useAddCabinMutation } from '../Redux/api/cabinsApi';
 import type { CabinFormInputs, NewCabin } from '../Redux/models/cabins.model';
 import { supabase } from '../services/supabase';
 import { useDispatch } from 'react-redux';
-import { setEditCabinId } from '../Redux/slices/cabinSlice';
+import { clearCabinId, setEditCabinId } from '../Redux/slices/cabinSlice';
 
 const useHandleCabinForm = () => {
   const dispatch = useDispatch();
@@ -74,11 +74,15 @@ const useHandleCabinForm = () => {
     dispatch(setEditCabinId(id));
   };
 
+  const handleCloseEdit = () => {
+    dispatch(clearCabinId());
+  };
+
   const onError = (errors: FieldErrors<CabinFormInputs>) => {
     console.log(errors);
   };
 
-  return { onSubmit, register, handleSubmit, handleEdit, onError, getValues, errors };
+  return { onSubmit, register, handleSubmit, handleEdit, handleCloseEdit, onError, getValues, errors };
 };
 
 export default useHandleCabinForm;
